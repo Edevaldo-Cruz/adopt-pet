@@ -4,7 +4,7 @@ import {
   Title,
   Subtitle,
   Button,
-  ContainerText,
+  DivText,
   ContainerBtn,
   Text,
 } from "./styles";
@@ -16,7 +16,7 @@ export default function HeaderSection() {
     <Header>
       <NavBar />
       <Container>
-        <ContainerText>
+        <DivText>
           <Title>Adote um pet!</Title>
           <Text>
             <Subtitle>
@@ -30,7 +30,7 @@ export default function HeaderSection() {
           <ContainerBtn>
             <Button>Saiba mais</Button>
           </ContainerBtn>
-        </ContainerText>
+        </DivText>
       </Container>
     </Header>
   );

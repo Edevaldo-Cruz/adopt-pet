@@ -2,13 +2,11 @@ import styled from "styled-components";
 import banner from "../assets/images/banner.jpg";
 
 export const Header = styled.header`
-  position: relative;
   width: 100%;
   height: 50rem;
   background-image: url(${banner});
   background-size: cover;
   background-position: center;
-  z-index: 999;
   box-shadow: 0 0 10px rgba(88, 0, 0, 0.2);
 `;
 
@@ -36,18 +34,16 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const ContainerText = styled.div`
-  width: 80%;
-  height: 50%;
-  margin-top: 15%;
-  background-color: rgba(128, 128, 128, 0.2);
+export const DivText = styled.div`
+  width: 55%;
+  height: 10%;
   border-radius: 1rem;
-  padding: 3rem;
+  padding-top: 25rem;
 `;
 
 export const Text = styled.div`
-  margin-right: 5%;
-  margin-left: 5%;
+  margin-right: 10%;
+  margin-left: 10%;
 `;
 
 export const ContainerBtn = styled.div`
