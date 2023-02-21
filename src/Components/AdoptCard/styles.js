@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const NextPrevButton = styled.a`
+  width: 5rem;
+  height: 5rem;
+  border-radius: 2.5rem;
   background-color: #f7941d;
   opacity: 1;
 `;

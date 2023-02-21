@@ -3,7 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Carousel } from "react-bootstrap";
 
-export default function DogCarousel() {
+export default function GalleryCarousel() {
   const [images, setImages] = useState([]);
 
   const fetchImages = async () => {

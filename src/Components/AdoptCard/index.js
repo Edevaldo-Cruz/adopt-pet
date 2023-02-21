@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Card, Carousel, Row, Col, Button } from "react-bootstrap";
+import { Card, Carousel, Row, Col } from "react-bootstrap";
 import axios from "axios";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { NextPrevButton, NextPrevIcon, CardTitle } from "./styles";
 
 export default function AdoptCard() {
@@ -9,17 +8,28 @@ export default function AdoptCard() {
 
   useEffect(() => {
     const fetchDogs = async () => {
-      const response = await axios.get(
-        "https://dog.ceo/api/breeds/image/random/10"
-      );
-      setDogs(response.data.message);
+      const response = await axios.get("https://localhost:7261/Pet/GetAllPets");
+      const petList = response.data;
+      const emptyUserPets = petList.filter((pet) => pet.idUser == null);
+      setDogs(emptyUserPets);
     };
 
     fetchDogs();
   }, []);
 
   return (
-    <Carousel>
+    <Carousel controls={false}>
+      <NextPrevButton
+        className="carousel-control-prev"
+        href="#carousel"
+        role="button"
+        data-slide="prev"
+      >
+        <NextPrevIcon
+          className="carousel-control-prev-icon"
+          aria-hidden="true"
+        />
+      </NextPrevButton>
       {dogs
         .reduce((accumulator, dog, index) => {
           if (index % 4 === 0) {
@@ -33,43 +43,30 @@ export default function AdoptCard() {
             <Row>
               {dogGroup.map((dog, index) => (
                 <Col key={index}>
-                  <NextPrevButton
-                    className="carousel-control-prev"
-                    href="#carousel"
-                    role="button"
-                    data-slide="prev"
-                  >
-                    <NextPrevIcon
-                      className="carousel-control-prev-icon"
-                      aria-hidden="true"
-                    />
-                    <span className="sr-only">Previous</span>
-                  </NextPrevButton>
                   <button>
                     <Card style={{ width: "18rem" }}>
-                      <Card.Img variant="top" src={dog} />
+                      <Card.Img variant="top" src={dog.image} />
                       <Card.Body>
-                        <CardTitle>Card Title</CardTitle>
+                        <CardTitle>{dog.name}</CardTitle>
                       </Card.Body>
                     </Card>
                   </button>
-                  <NextPrevButton
-                    className="carousel-control-next"
-                    href="#carousel"
-                    role="button"
-                    data-slide="next"
-                  >
-                    <NextPrevIcon
-                      className="carousel-control-next-icon"
-                      aria-hidden="true"
-                    />
-                    <span className="sr-only">Next</span>
-                  </NextPrevButton>
                 </Col>
               ))}
             </Row>
           </Carousel.Item>
         ))}
+      <NextPrevButton
+        className="carousel-control-next"
+        href="#carousel"
+        role="button"
+        data-slide="next"
+      >
+        <NextPrevIcon
+          className="carousel-control-next-icon"
+          aria-hidden="true"
+        />
+      </NextPrevButton>
     </Carousel>
   );
 }

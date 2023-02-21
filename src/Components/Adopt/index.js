@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Card, Carousel, Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
-import AdoptCard from "../AdoptCard";
+import AdoptCarousel from "../AdoptCarousel";
+import AdoptStep from "../AdoptStep";
 import { Background, AdoptTitle } from "./styles";
 
 export default function Adopt() {
@@ -16,7 +17,8 @@ export default function Adopt() {
             <strong>casa!!</strong>
           </p>
         </AdoptTitle>
-        <AdoptCard />
+        <AdoptCarousel />
+        <AdoptStep />
       </Container>
     </Background>
   );

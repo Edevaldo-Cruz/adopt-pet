@@ -24,9 +24,8 @@ import img3 from "../assets/images/gallery-img3.jpg";
 import img4 from "../assets/images/gallery-img4.jpg";
 import img5 from "../assets/images/gallery-img5.jpg";
 
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import DogCarousel from "../Carousel";
+import GalleryCarousel from "../GalleryCarousel";
 
 export default function Gallery() {
   const [show, setShow] = useState(false);
@@ -155,7 +154,7 @@ export default function Gallery() {
       </button>
 
       <Modal show={show} onHide={handleClose}>
-        <DogCarousel />
+        <GalleryCarousel />
       </Modal>
     </>
   );
