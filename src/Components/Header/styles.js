@@ -38,7 +38,7 @@ export const DivText = styled.div`
   width: 55%;
   height: 10%;
   border-radius: 1rem;
-  padding-top: 25rem;
+  padding-top: 22rem;
 `;
 
 export const Text = styled.div`

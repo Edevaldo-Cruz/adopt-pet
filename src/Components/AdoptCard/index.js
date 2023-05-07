@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
 import { Card, Carousel, Row, Col } from "react-bootstrap";
 import axios from "axios";
-import { NextPrevButton, NextPrevIcon, CardTitle } from "./styles";
+import { CardTitle, CardHover, ButtonCard, CardCarousel } from "./styles";
 
-export default function AdoptCard() {
+function CustomCarouselButton({ onClick, icon }) {
+  return (
+    <button type="button" className="custom-carousel-button" onClick={onClick}>
+      {icon}
+    </button>
+  );
+}
+
+export default function AdoptCard({ onClick }) {
   const [dogs, setDogs] = useState([]);
 
   useEffect(() => {
@@ -13,23 +21,11 @@ export default function AdoptCard() {
       const emptyUserPets = petList.filter((pet) => pet.idUser == null);
       setDogs(emptyUserPets);
     };
-
     fetchDogs();
   }, []);
 
   return (
-    <Carousel controls={false}>
-      <NextPrevButton
-        className="carousel-control-prev"
-        href="#carousel"
-        role="button"
-        data-slide="prev"
-      >
-        <NextPrevIcon
-          className="carousel-control-prev-icon"
-          aria-hidden="true"
-        />
-      </NextPrevButton>
+    <CardCarousel indicators={false} interval={20000}>
       {dogs
         .reduce((accumulator, dog, index) => {
           if (index % 4 === 0) {
@@ -40,33 +36,24 @@ export default function AdoptCard() {
         }, [])
         .map((dogGroup, index) => (
           <Carousel.Item key={index}>
-            <Row>
-              {dogGroup.map((dog, index) => (
-                <Col key={index}>
-                  <button>
-                    <Card style={{ width: "18rem" }}>
+            <ButtonCard
+              variant="outline-secondary"
+              onClick={onClick}
+              aria-controls="example-collapse-text"
+            >
+              <Row className="align-items-center">
+                {dogGroup.map((dog, index) => (
+                  <Col key={index}>
+                    <CardHover index={index}>
                       <Card.Img variant="top" src={dog.image} />
-                      <Card.Body>
-                        <CardTitle>{dog.name}</CardTitle>
-                      </Card.Body>
-                    </Card>
-                  </button>
-                </Col>
-              ))}
-            </Row>
+                      <CardTitle>{dog.name}</CardTitle>
+                    </CardHover>
+                  </Col>
+                ))}
+              </Row>
+            </ButtonCard>
           </Carousel.Item>
         ))}
-      <NextPrevButton
-        className="carousel-control-next"
-        href="#carousel"
-        role="button"
-        data-slide="next"
-      >
-        <NextPrevIcon
-          className="carousel-control-next-icon"
-          aria-hidden="true"
-        />
-      </NextPrevButton>
-    </Carousel>
+    </CardCarousel>
   );
 }

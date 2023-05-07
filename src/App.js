@@ -15,8 +15,8 @@ function App() {
       const petList = response.data;
       const emptyUserPets = petList.filter((pet) => pet.idUser == null);
       console.log(emptyUserPets);
-      if (emptyUserPets.length < 10) {
-        for (let i = 0; i < 10 - emptyUserPets.length; i++) {
+      if (emptyUserPets.length < 20) {
+        for (let i = 0; i < 20 - emptyUserPets.length; i++) {
           const newPet = await axios.post("https://localhost:7261/Pet");
           petList.push(newPet.data.message);
         }
